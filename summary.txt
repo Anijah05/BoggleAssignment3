@@ -1,0 +1,40 @@
+Overview of the Original Implementation
+The original version of my Boggle solver successfully implemented a recursive depth-first search (DFS) algorithm to find all valid words within a given grid based on a provided dictionary. The code functionally met the project’s requirements and passed all Level II readability and functionality tests. The structure of the program included a well-defined Boggle class with methods for setting the grid, setting the dictionary, building word prefixes, performing the DFS search, and returning valid results.
+The design also emphasized correctness and clarity over optimization. It correctly avoided revisiting cells during DFS exploration and normalized all input to uppercase for consistent word comparisons. The code’s logic was modular, making it easy to debug and test. However, some stylistic and organizational improvements were needed to make it fully align with Python’s PEP 8 standards and improve long-term maintainability.
+Reviewer Feedback Summary
+During the code review activity, I received valuable feedback from two peers that focused on three main areas:
+Code Readability and Structure
+Performance and Search Optimization
+Consistency with Python Style Guidelines
+Readability:
+My reviewers noted that the overall organization was clear, with good function separation and descriptive variable names. However, they suggested that I add or refine certain docstrings to better describe method purposes and expected input types. They also recommended maintaining consistent spacing between functions and keeping line lengths under 79 characters.
+Performance:
+The DFS function (_dfs) was effective but made frequent copies of the visited set, which could be inefficient on larger grids. Reviewers suggested either reusing the same set by adding/removing cells as recursion progresses or passing an immutable structure like a tuple. Although this was a minor efficiency note, I decided to leave the functionally correct version as-is, since optimization wasn’t the project’s main goal.
+Style and Formatting:
+Reviewers identified a few opportunities to align better with PEP 8 conventions — such as preferring snake_case method names (set_grid instead of setGrid) and ensuring all comments start with a capital letter. They also recommended using triple double-quoted docstrings consistently and verifying indentation with a code formatter like Prettier.
+Changes and Improvements Made
+Based on the feedback and static analysis from pycodestyle, I made several targeted improvements:
+Enhanced Documentation:
+Added or clarified docstrings for every method in the Boggle class.
+Used consistent triple double quotes for all docstrings.
+Added type hints and explanations for key parameters and return values in documentation comments.
+Improved Code Formatting:
+Ran the code through Prettier (for general formatting) and pycodestyle to eliminate spacing and indentation inconsistencies.
+Verified that all line lengths, blank lines, and indentations comply with PEP 8.
+Refined Method Naming and Readability:
+Evaluated renaming setGrid and setDictionary to set_grid and set_dictionary for style consistency.
+Left the original names unchanged to maintain compatibility with the Codio autograder but noted this in documentation.
+Prefix Optimization Review:
+Reviewed _build_prefixes logic to ensure no redundant prefixes were created.
+Verified that prefix pruning correctly reduces unnecessary DFS exploration.
+Regression Testing:
+After making formatting changes, I re-ran all unit tests to confirm that the solver’s output was identical to the pre-review version.
+No regressions or logic errors were introduced by refactoring.
+Expanded Test Coverage:
+Added a tests.py suite with multiple test classes, including edge cases (empty grid, 1x1 grid) and scalability tests with larger grids.
+Verified that the solver correctly handled multi-letter tiles like “Qu” and “St” and produced uppercase normalized output.
+Results and Reflection
+After the review and improvement process, the boggle_solver.py file now passes both readability and linting checks. The updated version demonstrates consistent style, enhanced documentation, and clean modular structure without compromising performance or correctness.
+Running pycodestyle on the final version reported zero violations. The code also successfully runs through Codio’s auto-grader and passes all custom unit tests, confirming that regression testing was effective.
+This project reinforced the importance of code readability and maintainability in collaborative software development. Working through the review process highlighted how small stylistic and documentation improvements can significantly enhance long-term code quality. It also gave me hands-on experience with professional tools like Prettier and pycodestyle, which I plan to use in future development projects to enforce consistent team-wide standards.
+Overall, the review improved my understanding of both clean code principles and automated style enforcement — essential skills for working in any professional software environment.
